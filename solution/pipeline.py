@@ -6,8 +6,25 @@ PreferenceMatch = namedtuple("PreferenceMatch", ["product_name", "product_codes"
 
 
 def main(product_data, include_tags, exclude_tags):
-    """The implementation of the pipeline test."""
-    pass
+    """
+    The implementation of the pipeline test.
+    Assumptions:
+     - Input validation is being handled external to this function
+     - We don't need to apply any kind of transformations to the data (e.g. sorting)
+    """
+    # Use a dictionary for matches to take advantage of hash lookups
+    matches = {}
+    for product in product_data:
+        # Filter out products that don't match ANY of the include tags or do match ANY of the exclude tags
+        # Avoiding standard any/all functions here because they check every element in the list before returning
+        if set(include_tags).isdisjoint(product["tags"]) or not set(exclude_tags).isdisjoint(product["tags"]):
+            continue
+        
+        # Append product code to the list of codes matched for a given product type
+        matches[product["name"]] = [product["code"]] if product["name"] not in matches else matches[product["name"]] + [product["code"]]
+    # Map the matches dictionary to a list of PreferenceMatch objects
+    formattedMatches = [PreferenceMatch(name, codes) for name, codes in matches.items()]
+    return formattedMatches
 
 
 if __name__ == "__main__":
