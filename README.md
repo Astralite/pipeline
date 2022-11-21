@@ -1,3 +1,7 @@
+<h1>A simple data-processing challenge using python</h1>
+
+Instructions for the challenge are provided below:
+
 This is a data-processing test. You run a minimalist online clothing store which sells exactly one style of each item of clothing - one t-shirt, one pair of socks, one jacket, etc. Each of these comes in a range of colours and sizes. Each specific product sold is uniquely identified by an item code.
 
 The task is to take a set of product data and some tags indicating preferences, and work out which products match those preferences. The utility takes the path to a JSON file containing product data, and comma-separated lists of "include" and "exclude" tags. The products matched shall be those which have ANY of the include tags, and NONE of the exclude tags.
@@ -34,3 +38,5 @@ A21312
 Pants:
 A21455
 ```
+
+<h3 style="color:orange">❗ A solution is provided in the solution directory.</h3>
